@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'pages/list.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(PokeApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
