@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import '../api/main.dart';
+import 'package:poke_flutter/api/main.dart';
+import 'package:poke_flutter/helpers/text.dart';
 
 class PokeItem extends StatefulWidget {
-  int number = 0;
+  final int number;
 
-  PokeItem(int number) {
-    this.number = number;
-    print(number);
-  }
+  PokeItem(this.number);
 
   @override
   State<StatefulWidget> createState() {
@@ -18,6 +16,8 @@ class PokeItem extends StatefulWidget {
 
 class _PokeItem extends State<PokeItem> {
   Map<String, dynamic> pokemon = Map<String, dynamic>();
+  Color backgroundColor;
+  bool pressAttention = false;
 
   _PokeItem(int number) {
     getPokeData(number);
@@ -37,7 +37,44 @@ class _PokeItem extends State<PokeItem> {
   @override
   Widget build(BuildContext context) {
     if (pokemon.length > 0) {
-      return Text(pokemon['name']);
+      return new RaisedButton(
+        elevation: 0,
+        color: Theme.of(context).primaryColor,
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: Image.network(
+                pokemon['sprites']['front_default'],
+                Text(pokemon['name']),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10.0),
+              padding: EdgeInsets.only(
+                bottom: 5.0,
+                top: 5.0,
+                left: 10.0,
+                right: 10.0,
+              ),
+              decoration: new BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.all(Radius.circular(100.0)),
+              ),
+              child: Text(
+                capitalize(pokemon['name']),
+                style: Theme.of(context).textTheme.button,
+              ),
+            )
+          ],
+        ),
+        onPressed: () {},
+      );
     } else {
       return Text('loading');
     }
