@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import '../components/poke_item.dart';
+import '../theme.dart';
 
 class PokeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'PokeList',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: pokedexTheme,
       home: new PokeList(),
     );
   }
@@ -21,7 +20,8 @@ class PokeList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
         primary: false,
-        padding: const EdgeInsets.all(20.0),
+        //padding: const EdgeInsets.all(20.0),
+        //crossAxisSpacing: 50.0,
         crossAxisCount: 2,
         children: pokes.map((pokedata) {
           return PokeItem(pokedata);
