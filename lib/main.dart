@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'pages/list.dart';
 
-void main() => runApp(PokeApp());
+void main() {
+  //debugPaintSizeEnabled = true;
+  runApp(PokeApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
