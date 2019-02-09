@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:poke_flutter/api/main.dart';
 import 'package:poke_flutter/helpers/text.dart';
+import 'package:poke_flutter/podos/pokemon.dart';
 
 class PokeItem extends StatefulWidget {
   final int number;
@@ -15,7 +15,7 @@ class PokeItem extends StatefulWidget {
 }
 
 class _PokeItem extends State<PokeItem> {
-  Map<String, dynamic> pokemon = Map<String, dynamic>();
+  Pokemon pokemon;
   Color backgroundColor;
   bool pressAttention = false;
 
@@ -24,11 +24,11 @@ class _PokeItem extends State<PokeItem> {
   }
 
   getPokeData(number) {
-    api.getPokemon(number).then((response) {
-      var body = jsonDecode(response.body);
+    Api.getPokemon_(number).then((pokemon) {
       if (this.mounted) {
+        print(pokemon.name);
         setState(() {
-          pokemon = body;
+          this.pokemon = pokemon;
         });
       }
     });
@@ -55,10 +55,14 @@ class _PokeItem extends State<PokeItem> {
               color: Colors.white,
               shape: BoxShape.circle,
             ),
-            child: pokemon.length > 0
+            padding: EdgeInsets.all(5.0),
+            child: pokemon != null
                 ? Image.network(
-                    pokemon['sprites']['front_default'],
-                    Text(pokemon['name']),
+                    'http://www.pokestadium.com/sprites/xy/${pokemon.name.toLowerCase()}.gif',
+                    //pokemon.image,
+                    Text(pokemon.name),
+                    height: 120.0,
+                    fit: BoxFit.fill,
                   )
                 : loading(),
           ),
@@ -75,7 +79,7 @@ class _PokeItem extends State<PokeItem> {
               borderRadius: BorderRadius.all(Radius.circular(100.0)),
             ),
             child: Text(
-              capitalize(pokemon.length > 0 ? pokemon['name'] : 'loading'),
+              capitalize(pokemon != null ? pokemon.name : 'loading'),
               style: Theme.of(context).textTheme.button,
             ),
           )
