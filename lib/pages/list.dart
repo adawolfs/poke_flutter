@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../components/poke_item.dart';
-import '../theme.dart';
+import 'package:poke_flutter/pages/entry.dart';
+import 'package:poke_flutter/components/app_bar.dart';
+import 'package:poke_flutter/components/poke_item.dart';
+import 'package:poke_flutter/theme.dart';
 
 class PokeApp extends StatelessWidget {
   @override
@@ -8,7 +10,11 @@ class PokeApp extends StatelessWidget {
     return new MaterialApp(
       title: 'PokeList',
       theme: pokedexTheme,
-      home: new PokeList(),
+      home: Scaffold(
+        appBar: PokedexAppBar(),
+        body: PokeList(),
+        //body: PokeEntry(1),
+      ),
     );
   }
 }

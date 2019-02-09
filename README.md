@@ -1,12 +1,13 @@
-# poke_flutter
-
-PokeDex Flutter
+# PokeDex Flutter
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a flutter component test creating a Pokedex styled applicatión
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
+![PokeList](screenshots/pokelist.png)
+
+![PokeList](screenshots/pokemon.png)
 
 - [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
